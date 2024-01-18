@@ -31,10 +31,10 @@ class ApiHandler{
 
       try{
         const response =  await axios.get(url)
-        console.log(response.data)
+       return response
       }catch{
         console.log("get Error")
-       // return null
+        return null
       }
     }
 }
