@@ -8,11 +8,16 @@ function HomePage() {
 
     const navigate = useNavigate()
     const [Todo,setTodo] = useState([])
+    const [token,setToken]= useState("")
 
     const FetchData = async ()=>{
+        const header = {
+            "Authorization":`Bearer ${token}`
+        }
 
        const response = await ApiHandler.GetData({
-            url:"/api/todo/v1/Todos/todo/gettodo"
+            url:"/api/todo/v1/Todos/todo/gettodo",
+            customHeader: header
         })
 
         if(response?.data.success){
@@ -25,9 +30,13 @@ function HomePage() {
        const data = {
             "TodoID":id
         }
+        const header = {
+            "Authorization":`Bearer ${token}`
+        }
         const response = await ApiHandler.PostRequest({
             data:data,
-            url:"/api/todo/v1/Todos/todo/delete"
+            url:"/api/todo/v1/Todos/todo/delete",
+           customHeader: header
         })
 
         if(response?.data.success){
@@ -43,6 +52,9 @@ function HomePage() {
         const Logintkn = localStorage.getItem("accesstoken")
         
         if(Logintkn){
+
+            setToken(Logintkn); 
+
             // Do home things
             (async()=>{
                 console.log("Fetching data...");
@@ -60,7 +72,7 @@ function HomePage() {
            <div className="h-screen w-screen flex flex-col items-center justify-center gap-10">
           
            <AddTodo FetchData={FetchData}/>
-        //TODO: Extract
+        {/* TODO: Extract */}
             <div className="h-1/2 w-10/12 overflow-scroll flex flex-col items-center">
                 {
                    !Todo ? (<>

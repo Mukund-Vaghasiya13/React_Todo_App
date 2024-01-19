@@ -11,9 +11,13 @@ function AddTodo({
         const todo = {
             "todo":Todo
         }
+        const header = {
+            "Authorization":`Bearer ${token}`
+        }
        const response =  await ApiHandler.PostRequest({
             url:"/api/todo/v1/Todos/todo/add",
-            data:todo
+            data:todo,
+            customHeader:header
         })
         if (response.data.success){
             await FetchData()
