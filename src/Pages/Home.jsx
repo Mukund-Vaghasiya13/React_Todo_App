@@ -7,7 +7,7 @@ import AddTodo from "../Components/AddTodo";
 function HomePage() {
 
     const navigate = useNavigate()
-    const [Todo,setTodo] = useState({})
+    const [Todo,setTodo] = useState([])
 
     const FetchData = async ()=>{
 
@@ -15,10 +15,18 @@ function HomePage() {
             url:"/api/todo/v1/Todos/todo/gettodo"
         })
 
-        if(response.data.success){
+        if(response?.data.success){
             const ArrayOfdata = response.data
-            console.log(ArrayOfdata)
+            setTodo(ArrayOfdata?.data)
         }
+    }
+
+    const RemoveTodo = (id)=>{
+
+    }
+
+    const EditTodo = (id)=>{
+        
     }
 
     useEffect(()=>{
@@ -37,11 +45,31 @@ function HomePage() {
     return ( 
         <> 
            <Header/>
-           <div className="h-screen w-screen flex flex-col justify-center">
+           <div className="h-screen w-screen flex flex-col items-center justify-center gap-10">
+          
            <AddTodo FetchData={FetchData}/>
-           <div className="he">
 
-           </div>
+            <div className="h-1/2 w-10/12 overflow-scroll flex flex-col items-center">
+                {
+                   !Todo ? (<>
+                    <div>Null</div>
+                   </>) : Todo.map((e,i)=>{
+                        return (
+                            <div key={i} className="h-20 w-full border flex justify-between p-3">
+                                <label className=" text-xl md:text-2xl font-bold">
+                                    {e.todo}
+                                </label>
+
+                                <div className="flex gap-5">
+                                    <button className="bg-blue-400 h-fit text-white font-bold rounded p-2 active:bg-black">Edit</button>
+                                    <button className="bg-blue-400 h-fit  text-white font-bold rounded p-2  active:bg-black">Remove</button>
+                                </div>
+
+                            </div>
+                        )
+                   })
+                }
+            </div>
            </div>
         </>
     );

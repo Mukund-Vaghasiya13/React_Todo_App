@@ -24,11 +24,6 @@ class ApiHandler{
       url,
       customHeader = {}
     }){
-      // const headers = {
-      //   "content-type":"application/json",
-      //   ...customHeader
-      // }  
-
       try{
         const response =  await axios.get(url)
        return response

@@ -23,11 +23,11 @@ function AddTodo({
 
     return ( 
         <>
-            <div className="flex justify-center">
-                <input className="h-10 w-9/12 shadow shadow-gray-400 rounded-l border-2 border-r-0  border-black outline-none pl-2" placeholder="Add Todo" onChange={(e)=>{
+            <div className="flex justify-center w-full">
+                <input className="Component_AddTodo" placeholder="Add Todo" onChange={(e)=>{
                     addTodo(e.currentTarget.value)
                 }}></input>
-                <button className="h-10 w-fit bg-blue-400 shadow  shadow-gray-400 p-2 text-white font-bold rounded-r border-2 border-black border-l-0 active:bg-black active:text-white" onClick={ async()=>{
+                <button className="Component_AddTodo_Button" onClick={ async()=>{
                     await AddTodo()
                 }}>Add</button>
             </div>
