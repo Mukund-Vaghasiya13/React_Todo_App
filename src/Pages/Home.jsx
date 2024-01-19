@@ -60,7 +60,7 @@ function HomePage() {
            <div className="h-screen w-screen flex flex-col items-center justify-center gap-10">
           
            <AddTodo FetchData={FetchData}/>
-
+        //TODO: Extract
             <div className="h-1/2 w-10/12 overflow-scroll flex flex-col items-center">
                 {
                    !Todo ? (<>
