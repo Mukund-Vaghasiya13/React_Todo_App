@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import { ApiHandler } from "../ApiHandler/ApiHandler";
 import AddTodo from "../Components/AddTodo";
+import { asyncThunkCreator } from "@reduxjs/toolkit";
 
 function HomePage() {
 
@@ -21,8 +22,18 @@ function HomePage() {
         }
     }
 
-    const RemoveTodo = (id)=>{
+    const RemoveTodo = async(id)=>{
+       const data = {
+            "TodoID":id
+        }
+        const response = await ApiHandler.PostRequest({
+            data:data,
+            url:"/api/todo/v1/Todos/todo/delete"
+        })
 
+        if(response?.data.success){
+           await FetchData()
+        }
     }
 
     const EditTodo = (id)=>{
@@ -35,7 +46,9 @@ function HomePage() {
         if(Logintkn){
             // Do home things
             (async()=>{
-                await FetchData()
+                console.log("Fetching data...");
+               await FetchData()
+                console.log("Data fetched successfully");
             })()
         }else{
             navigate("/login")  
@@ -62,7 +75,9 @@ function HomePage() {
 
                                 <div className="flex gap-5">
                                     <button className="bg-blue-400 h-fit text-white font-bold rounded p-2 active:bg-black">Edit</button>
-                                    <button className="bg-blue-400 h-fit  text-white font-bold rounded p-2  active:bg-black">Remove</button>
+                                    <button className="bg-blue-400 h-fit  text-white font-bold rounded p-2  active:bg-black" onClick={async()=>{
+                                        await RemoveTodo(e._id)
+                                    }}>Remove</button>
                                 </div>
 
                             </div>
