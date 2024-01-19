@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
 import { ApiHandler } from "../ApiHandler/ApiHandler";
 import AddTodo from "../Components/AddTodo";
-import { asyncThunkCreator } from "@reduxjs/toolkit";
 
 function HomePage() {
 
