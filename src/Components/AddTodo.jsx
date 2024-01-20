@@ -2,7 +2,8 @@ import { useState } from "react";
 import { ApiHandler } from "../ApiHandler/ApiHandler";
 
 function AddTodo({
-    FetchData
+    FetchData,
+    Token
 }) {
 
     const [Todo,addTodo] = useState("")
@@ -12,7 +13,7 @@ function AddTodo({
             "todo":Todo
         }
         const header = {
-            "Authorization":`Bearer ${token}`
+            "Authorization":`Bearer ${Token}`
         }
        const response =  await ApiHandler.PostRequest({
             url:"/api/todo/v1/Todos/todo/add",

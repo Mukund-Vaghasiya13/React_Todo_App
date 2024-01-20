@@ -29,7 +29,6 @@ function LoginPage() {
 
        const ResponseData = response.data.data 
         if(ResponseData){
-            console.log(ResponseData)
             localStorage.setItem("accesstoken",ResponseData)
             navigate("/")
         }

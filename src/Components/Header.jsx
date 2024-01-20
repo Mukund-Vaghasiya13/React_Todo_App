@@ -1,16 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { ApiHandler } from "../ApiHandler/ApiHandler";
 
-function Header() {
+function Header({Token}) {
     const navigate = useNavigate() 
 
     const logout = async()=>{
+        const header = {
+            "Authorization":`Bearer ${Token}`
+        }
      const response =  await ApiHandler.PostRequest(
         {
-            url:"/api/todo/v1/logout"
+            url:"/api/todo/v1/logout",
+            customHeader:header
         }
      )
-     if(response.data.success)
+     if(response?.data.success)
         localStorage.removeItem("accesstoken");
         navigate("/login")
     }

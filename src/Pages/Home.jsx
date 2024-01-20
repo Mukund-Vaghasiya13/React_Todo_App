@@ -5,16 +5,18 @@ import { ApiHandler } from "../ApiHandler/ApiHandler";
 import AddTodo from "../Components/AddTodo";
 
 function HomePage() {
+    
 
     const navigate = useNavigate()
     const [Todo,setTodo] = useState([])
     const [token,setToken]= useState("")
 
-    const FetchData = async ()=>{
-        const header = {
-            "Authorization":`Bearer ${token}`
-        }
+    const header = {
+        "Authorization":`Bearer ${token}`
+    }
 
+    const FetchData = async ()=>{
+        
        const response = await ApiHandler.GetData({
             url:"/api/todo/v1/Todos/todo/gettodo",
             customHeader: header
@@ -30,9 +32,7 @@ function HomePage() {
        const data = {
             "TodoID":id
         }
-        const header = {
-            "Authorization":`Bearer ${token}`
-        }
+        
         const response = await ApiHandler.PostRequest({
             data:data,
             url:"/api/todo/v1/Todos/todo/delete",
@@ -44,8 +44,22 @@ function HomePage() {
         }
     }
 
-    const EditTodo = (id)=>{
-        
+    const EditTodo = async (message,id)=>{
+        const data = {
+            "TodoID":id,
+            "todo":message
+        }
+
+        const response = await ApiHandler.PostRequest({
+            data:data,
+            url:"/api/todo/v1/Todos/todo/update",
+           customHeader: header
+        })
+
+        if(response?.data.success){
+            await FetchData()
+         }
+
     }
 
     useEffect(()=>{
@@ -57,9 +71,7 @@ function HomePage() {
 
             // Do home things
             (async()=>{
-                console.log("Fetching data...");
                await FetchData()
-                console.log("Data fetched successfully");
             })()
         }else{
             navigate("/login")  
@@ -68,10 +80,10 @@ function HomePage() {
 
     return ( 
         <> 
-           <Header/>
+           <Header Token={token}/>
            <div className="h-screen w-screen flex flex-col items-center justify-center gap-10">
           
-           <AddTodo FetchData={FetchData}/>
+           <AddTodo FetchData={FetchData} Token={token}/>
         {/* TODO: Extract */}
             <div className="h-1/2 w-10/12 overflow-scroll flex flex-col items-center">
                 {
@@ -85,7 +97,12 @@ function HomePage() {
                                 </label>
 
                                 <div className="flex gap-5">
-                                    <button className="bg-blue-400 h-fit text-white font-bold rounded p-2 active:bg-black">Edit</button>
+                                    <button className="bg-blue-400 h-fit text-white font-bold rounded p-2 active:bg-black" onClick={async()=>{
+                                       const message = window.prompt("Edit")
+                                       if(message){
+                                            await EditTodo(message,e._id)
+                                       }
+                                    }}>Edit</button>
                                     <button className="bg-blue-400 h-fit  text-white font-bold rounded p-2  active:bg-black" onClick={async()=>{
                                         await RemoveTodo(e._id)
                                     }}>Remove</button>
