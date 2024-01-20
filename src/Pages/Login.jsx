@@ -23,17 +23,13 @@ function LoginPage() {
         }
        )
 
-       if(!response){
-            //TODO:  Error Message
-       }
-
-       const ResponseData = response.data.data 
-        if(ResponseData){
+       if(response){
+            const ResponseData = response.data.data 
+            if(ResponseData){
             localStorage.setItem("accesstoken",ResponseData)
             navigate("/")
         }
-
-
+       }
     }
 
     return ( 
