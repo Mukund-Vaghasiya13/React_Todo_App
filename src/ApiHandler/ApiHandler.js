@@ -11,7 +11,7 @@ class ApiHandler{
         ...customHeader
       }  
      try{
-        const response =  await axios.post(url,data,{ headers })
+        const response =  await axios.post(url,data,headers)
         return response
      }catch{
         console.log("Error in Getting Resopnse")
@@ -22,10 +22,15 @@ class ApiHandler{
 
     static async GetData({
       url,
-      customHeader = {}
-    }){
+      token
+    }){ 
+      const headers = {
+        "Authorization":`Bearer ${token}`
+      }
       try{
-        const response =  await axios.get(url,{ headers: customHeader })
+        const response =  await axios.get(url, token && {
+          headers
+        })
        return response
       }catch{
         console.log("get Error")

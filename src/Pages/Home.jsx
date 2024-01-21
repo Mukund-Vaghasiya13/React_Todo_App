@@ -11,15 +11,12 @@ function HomePage() {
     const [Todo,setTodo] = useState([])
     const [token,setToken]= useState("")
 
-    const header = {
-        "Authorization":`Bearer ${token}`
-    }
 
-    const FetchData = async ()=>{
+   async function FetchData (){
         
        const response = await ApiHandler.GetData({
             url:"/api/todo/v1/Todos/todo/gettodo",
-            customHeader: header
+            token: token
         })
 
         if(response?.data.success){
@@ -36,7 +33,7 @@ function HomePage() {
         const response = await ApiHandler.PostRequest({
             data:data,
             url:"/api/todo/v1/Todos/todo/delete",
-           customHeader: header
+           token: token
         })
 
         if(response?.data.success){
@@ -53,7 +50,7 @@ function HomePage() {
         const response = await ApiHandler.PostRequest({
             data:data,
             url:"/api/todo/v1/Todos/todo/update",
-           customHeader: header
+            token: token
         })
 
         if(response?.data.success){
