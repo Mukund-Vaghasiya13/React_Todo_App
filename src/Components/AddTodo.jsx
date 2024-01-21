@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ApiHandler } from "../ApiHandler/ApiHandler";
+import { ApiHandler } from "../ApiHandler/ApiHandler.js";
 
 function AddTodo({
     FetchData,

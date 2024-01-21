@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../Components/Header";
-import { ApiHandler } from "../ApiHandler/ApiHandler";
-import AddTodo from "../Components/AddTodo";
+import Header from "../Components/Header.jsx";
+import { ApiHandler } from "../ApiHandler/ApiHandler.js";
+import AddTodo from "../Components/AddTodo.jsx";
 
 function HomePage() {
     
