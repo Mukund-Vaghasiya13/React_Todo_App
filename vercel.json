@@ -6,6 +6,13 @@
         "dest": "https://todo-xiii.onrender.com",
         "methods": ["GET", "POST"]  
       }
-    ]
+    ],
+
+      "rewrites": [
+        {
+          "source": "/(.*)",
+          "destination": "/index.html"
+        }
+      ]
   }
   
