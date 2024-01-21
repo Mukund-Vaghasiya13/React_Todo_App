@@ -10,7 +10,7 @@ function Header({Token}) {
         }
      const response =  await ApiHandler.PostRequest(
         {
-            url:"https://todo-xiii.onrender.com/api/todo/v1/logout",
+            url:"/api/todo/v1/logout",
             customHeader:header
         }
      )

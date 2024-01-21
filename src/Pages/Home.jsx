@@ -18,7 +18,7 @@ function HomePage() {
     const FetchData = async ()=>{
         
        const response = await ApiHandler.GetData({
-            url:"https://todo-xiii.onrender.com/api/todo/v1/Todos/todo/gettodo",
+            url:"/api/todo/v1/Todos/todo/gettodo",
             customHeader: header
         })
 
@@ -35,7 +35,7 @@ function HomePage() {
         
         const response = await ApiHandler.PostRequest({
             data:data,
-            url:"https://todo-xiii.onrender.com/api/todo/v1/Todos/todo/delete",
+            url:"/api/todo/v1/Todos/todo/delete",
            customHeader: header
         })
 
@@ -52,7 +52,7 @@ function HomePage() {
 
         const response = await ApiHandler.PostRequest({
             data:data,
-            url:"https://todo-xiii.onrender.com/api/todo/v1/Todos/todo/update",
+            url:"/api/todo/v1/Todos/todo/update",
            customHeader: header
         })
 

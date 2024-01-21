@@ -19,7 +19,7 @@ function LoginPage() {
       const response =  await ApiHandler.PostRequest(
         {
             data:data,
-            url:"https://todo-xiii.onrender.com/api/todo/v1/login"
+            url:"/api/todo/v1/login"
         }
        )
 
