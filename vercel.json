@@ -7,6 +7,14 @@
       "methods": ["GET", "POST"]
     },
     {
+      "src": "/assets/(.*)", 
+      "dest": "/assets/$1",
+      "headers": {
+        "Content-Type": "application/javascript"  
+      },
+      "methods": ["GET"]
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
