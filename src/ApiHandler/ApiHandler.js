@@ -11,7 +11,7 @@ class ApiHandler{
         ...customHeader
       }  
      try{
-        const response =  await axios.post(url,data,headers)
+        const response =  await axios.post(url,data,{headers})
         return response
      }catch{
         console.log("Error in Getting Resopnse")

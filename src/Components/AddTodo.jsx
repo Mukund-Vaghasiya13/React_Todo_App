@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ApiHandler } from "../ApiHandler/ApiHandler.js";
+import { Usage } from "../ApiHandler/ApiService.js";
 
 function AddTodo({
-    FetchData,
-    Token
+    Token,
+    setData
 }) {
 
     const [Todo,addTodo] = useState("")
@@ -21,7 +22,8 @@ function AddTodo({
             customHeader:header
         })
         if (response.data.success){
-            await FetchData()
+          const data  = await Usage.FetchData(Token)
+          setData(data)
         }
     }   
 

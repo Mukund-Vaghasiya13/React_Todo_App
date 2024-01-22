@@ -5,18 +5,24 @@ function Header({Token}) {
     const navigate = useNavigate() 
 
     const logout = async()=>{
-        const header = {
+        const headers = {
             "Authorization":`Bearer ${Token}`
         }
-     const response =  await ApiHandler.PostRequest(
-        {
-            url:"/api/todo/v1/logout",
-            customHeader:header
+        try {
+            const response = await ApiHandler.PostRequest({
+                url: "/api/todo/v1/logout",
+                 customHeader:headers
+            });
+            console.log(response)
+            if (response?.data.success) {
+                localStorage.removeItem("accesstoken");
+                navigate("/login");
+            } else {
+                console.error("Logout failed. Response:", response);
+            }
+        } catch (error) {
+            console.error("Error during logout:", error);
         }
-     )
-     if(response?.data.success)
-        localStorage.removeItem("accesstoken");
-        navigate("/login")
     }
     return (  
         <>
