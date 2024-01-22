@@ -5,25 +5,28 @@ function Header({Token}) {
     const navigate = useNavigate() 
 
     const logout = async()=>{
-        const headers = {
-            "Authorization":`Bearer ${Token}`
-        }
-        try {
-            const response = await ApiHandler.PostRequest({
-                url: "/api/todo/v1/logout",
-                customHeader:headers
-            });
-            console.log(response)
-            if (response?.data.success) {
-                localStorage.removeItem("accesstoken");
-                navigate("/login");
-            } else {
-                localStorage.removeItem("accesstoken");
-                navigate("/login");
-            }
-        } catch (error) {
-            console.error("Error during logout:", error);
-        }
+        // const headers = {
+        //     "Authorization":`Bearer ${Token}`
+        // }
+        // try {
+        //     const response = await ApiHandler.PostRequest({
+        //         url: "/api/todo/v1/logout",
+        //         customHeader:headers
+        //     });
+        //     console.log(response)
+        //     if (response?.data.success) {
+        //         localStorage.removeItem("accesstoken");
+        //         navigate("/login");
+        //     } else {
+        //         localStorage.removeItem("accesstoken");
+        //         navigate("/login");
+        //     }
+        // } catch (error) {
+        //     console.error("Error during logout:", error);
+        // }
+
+        localStorage.removeItem("accesstoken");
+        navigate("/login");
     }
     return (  
         <>
