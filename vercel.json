@@ -11,11 +11,11 @@
     },
     {
        "src": "/login",
-       "dest": "/$1"
+       "dest": "/login"
      },
     {
       "src": "/sinup",
-      "dest": "/$1"
+      "dest": "/sinup"
     }
   ]
   
