@@ -24,8 +24,7 @@ function SinUpPage() {
 
         if(response){
             const ResponseData = response.data.data 
-            if(ResponseData){
-            localStorage.setItem("accesstoken",ResponseData)
+            if(ResponseData.success){
             navigate("/")
         }
        }
