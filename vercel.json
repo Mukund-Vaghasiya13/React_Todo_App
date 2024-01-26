@@ -1,7 +1,9 @@
 {
 
   "rewrites":[
-    {"source":"/(.*)","destination":"/"},
+    {"source":"/(.*)","destination":"/"}
+  ],
+  "routes":[
     { "source": "/api/(.*)", "destination": "https://todo-xiii.onrender.com/api/$1" }
   ]
   
