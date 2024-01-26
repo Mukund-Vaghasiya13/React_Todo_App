@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ApiHandler } from "../ApiHandler/ApiHandler";
+import { ApiHandler } from "../ApiHandler/ApiHandler.js";
 import { useNavigate } from "react-router-dom";
 
 function SinUpPage() {
@@ -23,7 +23,7 @@ function SinUpPage() {
         )
 
         if(response){
-            const ResponseData = response.data.data 
+            const ResponseData = response.data 
             if(ResponseData.success){
             navigate("/")
         }
