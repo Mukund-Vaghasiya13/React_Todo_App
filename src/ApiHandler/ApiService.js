@@ -14,7 +14,6 @@ class UsageOfService {
             }
         } catch (error) {
             console.error("Error fetching data:", error);
-            // Handle the error appropriately, e.g., show an error message to the user
             return [];
         }
     }
@@ -36,7 +35,6 @@ class UsageOfService {
             }
         } catch (error) {
             console.error("Error removing todo:", error);
-            // Handle the error appropriately, e.g., show an error message to the user
             return [];
         }
     }
@@ -59,7 +57,6 @@ class UsageOfService {
             }
         } catch (error) {
             console.error("Error editing todo:", error);
-            // Handle the error appropriately, e.g., show an error message to the user
             return [];
         }
     }
